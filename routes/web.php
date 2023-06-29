@@ -5,6 +5,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\AdminBlogController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +19,10 @@ use App\Http\Controllers\Admin\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [BlogController::class, 'index'])->name('blogs.index');
+Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
+
+Route::get('/cats', [CatController::class, 'index'])->name('cats.index');
 
 Route::get('/contact',[ContactController::class, 'index'])->name('contact');
 Route::post('/contact',[ContactController::class, 'sendMail']);

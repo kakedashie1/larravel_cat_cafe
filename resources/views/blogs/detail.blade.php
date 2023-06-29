@@ -4,30 +4,31 @@
 @section('content')
 <section class="bg-gray-100 pt-2">
   <div class="container mx-auto">
-    <p class="text-left px-4 pt-2 text-gray-400"><a href="#" class="text-blue-600 hover:underline">ホーム</a><span class="px-2">&gt</span><a href="#" class="text-blue-600 hover:underline">ブログ</a><span class="px-2">&gt</span>リモートワークにも！</p>
+    <p class="text-left px-4 pt-2 text-gray-400"><a href="{{ route('blogs.index') }}" class="text-blue-600 hover:underline">ホーム</a><span class="px-2">&gt</span><a href="#" class="text-blue-600 hover:underline">ブログ</a><span class="px-2">&gt</span>リモートワークにも！</p>
     <h1 class="mt-2 text-4xl font-bold font-heading h-40 text-center p-12">リモートワークにも！</h1>
   </div>
 </section>
 
 <section>
   <div class="container mx-auto">
+    @foreach($blogs as $blog)
     <div class="my-8 pb-4 border-b">
       <p class="text-lg text-left">カテゴリ / ねこちゃん</p>
       <ul class="flex text-center pt-2">
-        <li class="bg-gray-100 text-gray-400 py-1 px-3 mr-3">カテゴリ</li>
-        <li class="bg-gray-100 text-gray-400 py-1 px-3 mr-3"><a href="#">カテゴリ</a></li>
-        <li class="bg-gray-100 text-gray-400 py-1 px-3 mr-3"><a href="#">カテゴリ</a></li>
-        <li class="bg-gray-100 text-gray-400 py-1 px-3 mr-3"><a href="#">＃ねこちゃん</a></li>
-        <li class="bg-gray-100 text-gray-400 py-1 px-3 mr-3"><a href="#">＃ねこちゃん</a></li>
-        <li class="bg-gray-100 text-gray-400 py-1 px-3"><a href="#">＃ねこちゃん</a></li>
+        <li class="bg-gray-100 text-gray-400 py-1 px-3 mr-3">{{ $blog->category->name }}</li>
+        @foreach($cats as $cat)
+        <li class="bg-gray-100 text-gray-400 py-1 px-3 mr-3"><a href="#">{{ $cat->name }}</a></li>
+        @endforeach
       </ul>
     </div>
     <div>
       <img class="mb-12 rounded object-cover mx-auto" src="/images/placeholders/blogs/working.jpeg" alt="">
     </div>
-    <p class="text-gray-500 leading-loose">説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります。 説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります説明テキストが入ります。</p>
+    <p class="text-gray-500 leading-loose">{{ $blog->body }}</p>
+    @endforeach
   </div>
 </section>
+
 
 <section class="mt-24">
   <div class="container mx-auto">
@@ -51,7 +52,7 @@
       <article class="w-full md:w-1/2 lg:w-1/3 p-3">
         <div class="border rounded-lg overflow-hidden shadow">
           <div class="relative h-52">
-            <span class="absolute text-xs text-gray-400 px-2 border border-white bg-gray-100 uppercase py-2 px-10 left-0 bottom-0">カテゴリ</span>
+            <span class="absolute text-xs text-gray-400 px-2 border border-white bg-gray-100 uppercase py-2 px-10 left-0 bottom-0">{{ $blog->category->name }}</span>
             <a href="#"><img class="w-full h-full object-cover" src="/images/placeholders/blogs/lunch.jpeg" alt=""></a>
             <time class="text-xs text-gray-500 text-right pr-2 pt-2">2022.3.12</time>
           </div>
